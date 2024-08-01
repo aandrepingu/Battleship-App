@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="gui.java.StartupWindowController">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="Settings">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#toggleNetworkSettings" text="Settings" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#displayHelpWindow" text="Manual" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+      <ToolBar prefHeight="40.0" prefWidth="200.0">
+        <items>
+          <Button fx:id="connectToOpponent" mnemonicParsing="false" onAction="#connect" prefHeight="41.0" prefWidth="147.0" text="Connect to opponent" />
+            <Button fx:id="waitForOpponent" mnemonicParsing="false" onAction="#waitOpponent" prefHeight="41.0" prefWidth="129.0" text="Wait for opponent" />
+            <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#toggleNetworkSettings" prefHeight="41.0" prefWidth="129.0" text="Network Settings" />
+            <AnchorPane prefHeight="0.0" prefWidth="200.0">
+               <children>
+                  <Text fx:id="networkStatusText" layoutX="14.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Waiting for connection..." visible="false" />
+               </children>
+            </AnchorPane>
+        </items>
+      </ToolBar>
+      <GridPane fx:id="networkSettings" gridLinesVisible="true" prefHeight="264.0" prefWidth="640.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Text layoutX="36.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Port Number" />
+                  <TextField fx:id="portField" layoutX="124.0" layoutY="20.0" text="8189" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+               <children>
+                  <Text layoutX="14.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opponent IP Address" />
+                  <TextField fx:id="IPField" layoutX="139.0" layoutY="20.0" text="0.0.0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <children>
+                  <Text layoutX="42.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Grid Rows" />
+                  <TextField fx:id="rowField" layoutX="104.0" layoutY="20.0" prefHeight="25.0" prefWidth="41.0" text="10" />
+                  <Text layoutX="174.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Grid Columns" />
+                  <TextField fx:id="colField" layoutX="254.0" layoutY="20.0" prefHeight="25.0" prefWidth="41.0" text="10" />
+               </children>
+            </AnchorPane>
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <AnchorPane prefHeight="97.0" prefWidth="121.0">
+                     <children>
+                        <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ship Lengths" />
+                        <TextField fx:id="shipLengthField" layoutX="14.0" layoutY="49.0" prefHeight="25.0" prefWidth="41.0" />
+                        <Button layoutX="63.0" layoutY="49.0" mnemonicParsing="false" onAction="#addShip" text="Add" />
+                     </children>
+                  </AnchorPane>
+                  <ListView fx:id="shipLengthList" editable="true" prefHeight="200.0" prefWidth="200.0" />
+               </children>
+            </HBox>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+               <children>
+                  <Text layoutX="42.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time Per Round (seconds)" />
+                  <TextField fx:id="roundTimeField" layoutX="197.0" layoutY="20.0" prefHeight="25.0" prefWidth="84.0" text="30" />
+               </children>
+            </AnchorPane>
+         </children>
+      </GridPane>
+  </children>
+</VBox>
